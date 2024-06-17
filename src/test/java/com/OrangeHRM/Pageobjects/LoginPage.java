@@ -35,4 +35,8 @@ public class LoginPage {
 	public void clickLoginButton() {
 		login.click();
 	}
+	
+	public WebElement getElementUsername() {
+		return username;
+	}
 }
