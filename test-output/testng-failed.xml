@@ -8,7 +8,8 @@
     <classes>
       <class name="com.OrangeHRM.Testcases.Testcase_001">
         <methods>
-          <include name="checkLogin"/>
+          <include name="assertTitle"/>
+          <include name="addEmployee"/>
           <include name="tearDown"/>
           <include name="setUp"/>
         </methods>
