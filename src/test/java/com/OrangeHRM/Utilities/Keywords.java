@@ -39,7 +39,7 @@ public class Keywords extends BaseClass {
 		}
 	}
 
-	/**
+	/*
 	 * Opens the specified URL in web browser
 	 * 
 	 * @param url {@code String}
