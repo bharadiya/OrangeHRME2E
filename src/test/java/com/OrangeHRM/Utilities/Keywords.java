@@ -1,13 +1,17 @@
 package com.OrangeHRM.Utilities;
 
 import java.time.Duration;
-import java.util.concurrent.TimeUnit;
+import java.util.ArrayList;
+import java.util.List;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.OrangeHRM.Testcases.BaseClass;
@@ -72,4 +76,81 @@ public class Keywords extends BaseClass {
 	public static void maximizeWindow() {
 		driver.manage().window().maximize();
 	}
+	
+//	----------------***********Select***********----------------
+	
+	public static void selectOptionByIndex(WebElement element, int index) {
+		Select select = new Select(element);
+		select.selectByIndex(index);
+	}
+	
+	public static void selectOptionByValue(WebElement element, String value) {
+		Select select = new Select(element);
+		select.selectByValue(value);
+	}
+	
+	public static void selectOptionBy(WebElement element, String text) {
+		Select select = new Select(element);
+		select.selectByVisibleText(text);		
+	}
+	
+	public static List<WebElement> selectDropDownOptionsList(WebElement element) {
+		Select select = new Select(element);
+		return select.getOptions();
+	}
+
+	public static List<String> getDropDownOptionsTextList(WebElement element) {
+		
+		List<WebElement> optionsList = selectDropDownOptionsList(element);
+		List<String> optionsTextList = new ArrayList<String>();
+		for(WebElement e : optionsList) {
+			String text = e.getText();
+			optionsTextList.add(text);
+		}
+		return optionsTextList;
+	}
+	
+	public static void selectDropDownValue(WebElement element, String expValue) {
+		List<WebElement> optionsList = selectDropDownOptionsList(element);
+		for (WebElement e : optionsList) {
+			String text = e.getText();
+			System.out.println(text);
+			if (text.equals(expValue)) {
+				e.click();
+				break;
+			}
+		}
+	}
+	
+//	----------------***********Send Keys - Actions***********----------------
+	
+	public static void doSendKeys(WebElement element, String value) {
+		element.clear();
+		element.sendKeys(value);
+	}
+	
+	public static void doActionsSendKeys(WebElement element, String value) {
+		Actions act = new Actions(driver);
+		act.sendKeys(element, value).build().perform();
+	}
+
+	public static void doClick(WebElement element) {
+		element.click();
+	}
+	
+	public static void doActionsCick(WebElement element) {
+		Actions act = new Actions(driver);
+		act.click().build().perform();
+	}
+
+	public static String doElementGetText(WebElement element) {
+		return element.getText();
+	}
+
+	public static String getElementAttribute(WebElement element, String attrName) {
+		return element.getAttribute(attrName);
+	}
+	
+	
+	
 }
