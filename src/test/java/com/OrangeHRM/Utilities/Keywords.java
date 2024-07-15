@@ -15,7 +15,7 @@ import com.OrangeHRM.Testcases.BaseClass;
 
 public class Keywords extends BaseClass {
 	/**
-	 * This method will open a web browser of user's choice
+	 * This metho will open a web browser of user's choice
 	 * 
 	 * @param browserName {@code String} to be one of "chrome","firefox","edge"
 	 * @return void
@@ -106,5 +106,14 @@ public class Keywords extends BaseClass {
 	 */
 	public static String getPageTitle() {
 		return driver.getTitle();
+	}
+	
+	/**
+	 * Returns if the element is  displayed or not 
+	 * @param element
+	 * @return {@code boolean}
+	 */
+	public static boolean isWebElementDisplayed(WebElement element) {
+		return element.isDisplayed();
 	}
 }
