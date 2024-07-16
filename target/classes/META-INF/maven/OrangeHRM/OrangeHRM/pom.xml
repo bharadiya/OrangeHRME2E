@@ -12,6 +12,8 @@
 			<version>3.8.1</version>
 			<scope>test</scope>
 		</dependency>
+		<!--
+		https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium -->
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-java</artifactId>
