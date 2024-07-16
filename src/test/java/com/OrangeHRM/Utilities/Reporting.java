@@ -1,7 +1,5 @@
 package com.OrangeHRM.Utilities;
 
-import java.io.File;
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -48,30 +46,14 @@ public class Reporting extends TestListenerAdapter {
 
 	public void onTestSuccess(ITestResult tr) {
 		logger = extent.createTest(tr.getName()); // create new entry in th report
-		logger.log(Status.PASS, MarkupHelper.createLabel(tr.getName(), ExtentColor.GREEN)); // send the passed
-																							// information to the report
-																							// with GREEN color
-																							// highlighted
+		logger.log(Status.PASS, MarkupHelper.createLabel(tr.getName(), ExtentColor.GREEN));																					// highlighted
 	}
 
 	public void onTestFailure(ITestResult tr) {
 		logger = extent.createTest(tr.getName()); // create new entry in th report
 		logger.log(Status.FAIL, MarkupHelper.createLabel(tr.getName(), ExtentColor.RED)); // send the passed information
-																							// to the report with GREEN
-																							// color highlighted
-
-		String screenshotPath = System.getProperty("user.dir") + "\\Screenshots\\" + tr.getName() + ".png";
-
-		File f = new File(screenshotPath);
-
-		if (f.exists()) {
-			try {
-				logger.fail("Screenshot is below:" + logger.addScreenCaptureFromPath(screenshotPath));
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-
+		GetScreenshots gs = new GetScreenshots();// to the report with GREEN
+		gs.getScreenShotWindowSize();
 	}
 
 	public void onTestSkipped(ITestResult tr) {
